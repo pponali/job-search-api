@@ -38,25 +38,37 @@ semi-automated application filling.
 
 ## Quick start
 
+Clone the repo, then run the one-command setup script for your OS.
+
+### Linux / macOS
+
 ```bash
-# 1. Clone + install
-git clone <this-repo> job-search-api
+git clone https://github.com/pponali/job-search-api.git
 cd job-search-api
-npm install
+./setup.sh
+```
 
-# 2. Configure
-cp .env.example .env
-# Edit .env — set NOTION_KEY and NOTION_DB_ID at minimum.
+### Windows (PowerShell)
 
-# 3. (Optional) Install JobSpy MCP server for live discovery
-git clone https://github.com/borgius/jobspy-mcp-server ~/jobspy-mcp-server
-cd ~/jobspy-mcp-server && npm install && pip install python-jobspy
+```powershell
+git clone https://github.com/pponali/job-search-api.git
+cd job-search-api
+powershell -ExecutionPolicy Bypass -File .\setup.ps1
+```
 
-# 4. Start servers
-./start-all.sh
+The setup script:
+1. Verifies Node 18+, Python 3.10+, git
+2. Runs `npm install`
+3. Optionally creates a Python venv with Playwright (for `/apply*` endpoints)
+4. Optionally clones the JobSpy MCP server
+5. Copies `.env.example` → `.env`
 
-# 5. Trigger discovery (in another terminal)
-node discover-once.mjs
+After it finishes, edit `.env` (set `NOTION_KEY` + `NOTION_DB_ID`), then:
+
+```bash
+./start-all.sh                  # macOS/Linux
+bash ./start-all.sh             # Windows (Git Bash / WSL)
+node discover-once.mjs          # trigger discovery (any OS)
 ```
 
 ---
