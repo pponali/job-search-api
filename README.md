@@ -28,8 +28,11 @@ semi-automated application filling.
 ```
 
 **Required:** Node 18+, Notion integration + DB.
-**Optional:** Python 3.10+, Playwright, [JobSpy MCP server](https://github.com/borgius/jobspy-mcp-server),
-[career-ops](https://github.com/) repo, [AIHawk](https://github.com/feder-cr/Jobs_Applier_AI_Agent_AIHawk).
+**Optional:**
+- Python 3.10+, Playwright (for `/apply*` endpoints)
+- [JobSpy MCP server](https://github.com/borgius/jobspy-mcp-server) (for live discovery)
+- [Claude Code CLI](https://docs.claude.com/claude-code) — required for `/evaluate`, `/generate-pdf`, `/tailor-resume`. The server shells out to the `claude` binary; auth is whatever the CLI is logged into (Pro/Max subscription or `ANTHROPIC_API_KEY`). No API key handling in this codebase.
+- [career-ops](https://github.com/) repo, [AIHawk](https://github.com/feder-cr/Jobs_Applier_AI_Agent_AIHawk)
 
 ---
 
@@ -186,6 +189,7 @@ Health: `GET /health`
 These modules are wired in but disabled until their env vars / external repos
 are set up. The core discovery → Notion flow works without any of them.
 
+- **Claude Code CLI** — install with `npm i -g @anthropic-ai/claude-code` then run `claude` once to log in. Needed only for evaluation/resume endpoints.
 - **career-ops** — Markdown-based CV + role evaluation pipeline. Set `CAREER_OPS_DIR`.
 - **AIHawk** — Auto-apply agent. Set `AIHAWK_DIR` and place credentials in
   `$AIHAWK_DIR/data_folder/secrets.yaml`.
