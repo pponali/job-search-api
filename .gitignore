@@ -1,0 +1,44 @@
+# Secrets
+.env
+.env.local
+.env.*.local
+
+# Sessions / tokens / cookies
+.linkedin_cookie
+.linkedin_token
+indeed_session.json
+*_session.json
+cookies.json
+
+# Logs
+*.log
+logs/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local resume artifacts
+resumes/
+output/
+/tmp/
